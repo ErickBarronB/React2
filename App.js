@@ -17,7 +17,7 @@ const [itemSelected, setitemSelected] = useState({})
 
 const onHandleSubmit = () => {
   setTask("");
-  setTasks((currentTasks) => [... currentTasks, {id: Math.random(), value: task }, ]);
+  setTasks((currentTasks) => [... currentTasks, {id: Math.random(), value: task}, ]);
 };
 
 const onHandleDelete = (itemSelected) => {
@@ -48,17 +48,23 @@ const renderItem = ({ item }) => {
 }
 
 const listHeaderComponent = () => {
-  return tasks.length > 0 && <Text style={style.titleList}>Task List</Text>;
+  return tasks.length > 0 && <Text style={style.titleList}>Articulos:</Text>;
 }
 
 console.warn({ tasks });
 
   return (
     <View style={themes.container}>
+    <View style={style.tituloListaContenedor}>
+      <View style={style.tituloLista}>
+        <Text style={style.tituloListaTexto}>Lista de Compras:</Text>
+      </View>
+    </View>
       <View style={style.containerTask} >
-        <TextInput style={style.TextInput} placeholder='add new task' value={task} onChangeText={onHandleInput}/>
+        <TextInput style={style.TextInput} placeholder='Agrega un Item' value={task} onChangeText={onHandleInput}/>
         <Button  title='ADD' color="#8cbcb9" onPress={onHandleSubmit} disabled={task.length == 0}/>
       </View>
+
 
 
 
@@ -82,7 +88,7 @@ console.warn({ tasks });
       )}
  */}
 <Modal
-    animationType='slide'
+    animationType='fade'
     visible={modalVisible}
     onRequestClose={() => null}
     style={style.modalContent}
@@ -112,19 +118,21 @@ const style = StyleSheet.create({
     marginTop: 40,
     paddingHorizontal: 25,
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    padding: 5,
     alignItems: "center",
   },
 
   TextInput: {
-    borderColor: "#10f",
-    borderStyle: 'dotted',
-    borderBottomWidth: 1,
+    borderColor: "#ffff",
+    borderStyle: 'solid',
+    borderBottomWidth: 4,
     marginBottom: 10,
     width: "60%",
     height: 40,
     fontSize: 14,
     color: "#2f2121",
+    marginHorizontal: 5,
   },
 
   containerList: {
@@ -140,20 +148,23 @@ const style = StyleSheet.create({
   },
 
   item: {
-    fontSize: 14,
+    fontSize: 40,
+    fontFamily: "arial",
     color: "#212121",
   },
 
   titleList: {
-  fontSize: 20,
+  flex: 1,
+  fontSize: 40,
   fontWeight: "bold",
   alignItems: "center",
   justifyContent: "center",
+  fontFamily: "Impact"
   },
 
   deleteButton: {
 
-    backgroundColor: "#BCBCB9",
+    backgroundColor: "#c24",
     padding: 5,
   },
 
@@ -165,7 +176,7 @@ const style = StyleSheet.create({
 
   modalContent: {
     flex: 1,
-    backgroundColor: "#ffff",
+    backgroundColor: "#a122",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     alignItems: "center",
@@ -195,5 +206,27 @@ const style = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+
+  tituloListaContendor: {
+    flex: 1,
+  },
+
+  tituloLista: {
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: 40,
+    backgroundColor: "#c134",
+    fontWeight: "bold",
+  },
+  
+  tituloListaTexto: {
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: 40,
+    fontWeight: "bold",
+    fontFamily: "Impact",
+    borderColor: "#a23"
+  },
+
 
 });
